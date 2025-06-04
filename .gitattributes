@@ -1,3 +1,4 @@
 project-root/data/*.csv filter=lfs diff=lfs merge=lfs -text
+project-root/data/kdd_train_processed.csv filter=lfs diff=lfs merge=lfs -text
 data/*.csv filter=lfs diff=lfs merge=lfs -text
 models/*.joblib filter=lfs diff=lfs merge=lfs -text
