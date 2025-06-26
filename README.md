@@ -1,4 +1,4 @@
-# 🛡️ AI Intrusion Detection System
+# 🛡️ AI Intrusion Detection System (Fun Project Made With Vibe Coding)
 
 [![Python](https://img.shields.io/badge/Python-3.12%2B-blue)](https://python.org)
 [![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.3.2-orange)](https://scikit-learn.org)
