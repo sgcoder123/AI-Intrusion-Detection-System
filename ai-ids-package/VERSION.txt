@@ -1,0 +1,4 @@
+AI-IDS Desktop Application v1.0.0
+Build Date: June 26, 2025
+Python Requirements: 3.7+
+License: MIT

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download - AI Intrusion Detection System</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .download-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .download-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .download-card.recommended {
+            border: 3px solid #28a745;
+            position: relative;
+        }
+        
+        .download-card.recommended::before {
+            content: "⭐ RECOMMENDED";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .download-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .download-card .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .download-card .description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .download-card .features {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .download-card .features li {
+            margin: 5px 0;
+            color: #555;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .download-btn.secondary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .download-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .platform-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .platform-option {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .platform-option:hover {
+            border-color: #667eea;
+            background: #e8f4fd;
+        }
+        
+        .platform-option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+        
+        .platform-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .download-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .download-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .requirements {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .requirements h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .requirements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .requirements li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .requirements li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .download-status {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+        
+        <div class="header">
+            <h1>📥 Download AI IDS</h1>
+            <p class="subtitle">Choose the perfect version for your needs</p>
+        </div>
+        
+        <div class="download-options">
+            <div class="download-card recommended">
+                <div class="icon">�️</div>
+                <h3>AI-IDS Portable Desktop App</h3>
+                <div class="description">
+                    A completely portable desktop application that requires <strong>zero installation</strong>. 
+                    No Python, no dependencies, no setup required. Just download and run in your browser!
+                </div>
+                <ul class="features">
+                    <li>✅ No installation required</li>
+                    <li>✅ Runs in any web browser</li>
+                    <li>✅ Professional desktop interface</li>
+                    <li>✅ Live threat detection simulation</li>
+                    <li>✅ Real-time statistics & monitoring</li>
+                    <li>✅ Adjustable sensitivity settings</li>
+                    <li>✅ Activity logging with timestamps</li>
+                    <li>✅ Works completely offline</li>
+                    <li>✅ Cross-platform (Windows/macOS/Linux)</li>
+                    <li>✅ Perfect for education & demonstration</li>
+                </ul>
+                <div style="margin: 20px 0; padding: 15px; background: #e8f5e8; border-radius: 8px; border-left: 4px solid #28a745;">
+                    <strong>📏 File Size:</strong> ~15 KB | <strong>💻 Compatibility:</strong> Any modern browser
+                </div>
+                <a href="/download/portable-app" class="download-btn">
+                    � Download Portable App
+                </a>
+                <br><br>
+                <a href="/download/launcher" class="download-btn secondary">
+                    🚀 Download with Windows Launcher
+                </a>
+            </div>
+            
+            <div class="download-card">
+                <div class="icon">🖥️</div>
+                <h3>Desktop Application</h3>
+                <div class="description">
+                    Native desktop application with GUI interface. 
+                    Requires Python to be installed on your system.
+                </div>
+                <ul class="features">
+                    <li>✅ Native GUI interface</li>
+                    <li>✅ System tray integration</li>
+                    <li>✅ Persistent settings</li>
+                    <li>✅ Better performance</li>
+                    <li>⚠️ Requires Python 3.6+</li>
+                    <li>⚠️ Requires tkinter library</li>
+                </ul>
+                <a href="/download/desktop" class="download-btn secondary">
+                    💻 Download Desktop App
+                </a>
+            </div>
+            
+            <div class="download-card">
+                <div class="icon">�</div>
+                <h3>Web Application</h3>
+                <div class="description">
+                    Browser-based interface that runs locally. 
+                    Modern responsive design with all features.
+                </div>
+                <ul class="features">
+                    <li>✅ Browser-based interface</li>
+                    <li>✅ Modern responsive design</li>
+                    <li>✅ No GUI dependencies</li>
+                    <li>✅ Cross-platform compatible</li>
+                    <li>⚠️ Requires Python 3.6+</li>
+                    <li>⚠️ Opens in web browser</li>
+                </ul>
+                <a href="/download/web" class="download-btn secondary">
+                    🌐 Download Web App
+                </a>
+            </div>
+        </div>
+        
+        <div class="getting-started" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; margin: 30px 0; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+            <h2 style="color: #333; margin-bottom: 20px; text-align: center;">🚀 What to Do After Downloading</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 30px 0;">
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; border-left: 5px solid #28a745;">
+                    <h3 style="color: #28a745; margin-bottom: 15px;">🏃‍♂️ Quick Start (Portable Edition)</h3>
+                    <div style="font-size: 14px; line-height: 1.6;">
+                        <p><strong>Windows:</strong></p>
+                        <ol style="margin: 10px 0; padding-left: 20px;">
+                            <li>Extract the ZIP file</li>
+                            <li>Double-click <code>launch_ai_ids.bat</code></li>
+                            <li>Wait for the app to start</li>
+                        </ol>
+                        
+                        <p><strong>Mac/Linux:</strong></p>
+                        <ol style="margin: 10px 0; padding-left: 20px;">
+                            <li>Extract the ZIP file</li>
+                            <li>Open Terminal in the folder</li>
+                            <li>Run: <code>./launch_ai_ids.sh</code></li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; border-left: 5px solid #007bff;">
+                    <h3 style="color: #007bff; margin-bottom: 15px;">🎮 Using the App</h3>
+                    <div style="font-size: 14px; line-height: 1.6;">
+                        <ol style="margin: 10px 0; padding-left: 20px;">
+                            <li><strong>Click "Start Protection"</strong> to begin monitoring</li>
+                            <li><strong>Watch live statistics</strong> update in real-time</li>
+                            <li><strong>Adjust sensitivity</strong> using the slider</li>
+                            <li><strong>View threats</strong> in the alerts log</li>
+                            <li><strong>Click "Stop Protection"</strong> to pause</li>
+                        </ol>
+                        <p style="margin-top: 15px; padding: 10px; background: #e3f2fd; border-radius: 5px;">
+                            💡 <em>The app runs in demo mode by default - safe for learning!</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="/getting-started" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); transition: all 0.3s ease;" 
+                   onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.4)'"
+                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.3)'">
+                    📖 Complete Getting Started Guide
+                </a>
+            </div>
+            
+            <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 10px; padding: 20px; margin: 20px 0;">
+                <h4 style="color: #856404; margin-bottom: 10px;">⚠️ Troubleshooting</h4>
+                <div style="font-size: 14px; color: #856404; line-height: 1.6;">
+                    <p><strong>App won't start?</strong></p>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>Try running as administrator (Windows)</li>
+                        <li>Check Security & Privacy settings (Mac)</li>
+                        <li>Install tkinter: <code>sudo apt-get install python3-tk</code> (Linux)</li>
+                        <li>The web version will automatically open as fallback</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="download-form">
+            <h2>Need Help Choosing?</h2>
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #28a745; margin-bottom: 15px;">🎯 Quick Recommendation:</h3>
+                <p><strong>Download the Portable Edition</strong> - it's designed to work on any system and automatically adapts to your setup:</p>
+                <ul style="margin: 15px 0; padding-left: 30px;">
+                    <li>If you have Python installed → Runs as a beautiful desktop app</li>
+                    <li>If you don't have Python → Runs as a web app in your browser</li>
+                    <li>Includes launcher scripts that do all the work for you</li>
+                </ul>
+                <p style="color: #666; font-style: italic;">Perfect for users who want maximum compatibility with zero technical setup!</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address (Optional)</label>
+                <input type="email" id="email" placeholder="your@email.com">
+                <small>For updates and support notifications</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="organization">Organization (Optional)</label>
+                <input type="text" id="organization" placeholder="Company or personal use">
+                <small>Help us understand our user base</small>
+            </div>
+        </div>
+        
+        <div class="requirements">
+            <h3>📋 System Requirements</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div>
+                    <h4>Minimum Requirements:</h4>
+                    <ul>
+                        <li>Python 3.8 or later</li>
+                        <li>2GB RAM</li>
+                        <li>500MB disk space</li>
+                        <li>Network interface</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>For Full Monitoring:</h4>
+                    <ul>
+                        <li>Administrator/root privileges</li>
+                        <li>Packet capture capabilities</li>
+                        <li>Active network connection</li>
+                        <li>Modern web browser</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedPlatform = null;
+        
+        // Platform selection
+        document.querySelectorAll('.platform-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove previous selection
+                document.querySelectorAll('.platform-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Select current platform
+                this.classList.add('selected');
+                selectedPlatform = this.getAttribute('data-platform');
+                
+                // Update download button
+                const downloadBtn = document.getElementById('download-btn');
+                downloadBtn.disabled = false;
+                downloadBtn.textContent = `📥 Download for ${selectedPlatform.charAt(0).toUpperCase() + selectedPlatform.slice(1)}`;
+            });
+        });
+        
+        // Download button
+        document.getElementById('download-btn').addEventListener('click', function() {
+            if (!selectedPlatform) return;
+            
+            const email = document.getElementById('email').value;
+            const organization = document.getElementById('organization').value;
+            
+            // Show download status
+            const statusEl = document.getElementById('download-status');
+            const errorEl = document.getElementById('error-message');
+            statusEl.style.display = 'block';
+            errorEl.style.display = 'none';
+            
+            // Disable button during download
+            this.disabled = true;
+            this.textContent = 'Preparing download...';
+            
+            // Create download URL
+            const params = new URLSearchParams();
+            if (email) params.append('email', email);
+            if (organization) params.append('organization', organization);
+            
+            const downloadUrl = `/api/download/${selectedPlatform}?${params.toString()}`;
+            
+            // Create hidden link and trigger download
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = `ai-ids-${selectedPlatform}-${new Date().toISOString().split('T')[0]}.zip`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Reset button after delay
+            setTimeout(() => {
+                this.disabled = false;
+                this.textContent = `📥 Download for ${selectedPlatform.charAt(0).toUpperCase() + selectedPlatform.slice(1)}`;
+                statusEl.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

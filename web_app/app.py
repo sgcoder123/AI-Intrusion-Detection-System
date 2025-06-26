@@ -95,8 +95,25 @@ class DownloadPortal:
                 email = request.args.get('email', '')
                 organization = request.args.get('organization', '')
                 
-                # Create download package
-                package_path = self.create_download_package(platform)
+                # Map platform to actual files
+                downloads_dir = Path(__file__).parent / 'static' / 'downloads'
+                
+                if platform == 'windows':
+                    filename = 'AI-IDS-Desktop-v1.0.0.zip'
+                    file_path = downloads_dir / filename
+                elif platform == 'linux':
+                    filename = 'AI-IDS-Desktop-v1.0.0.tar.gz'  
+                    file_path = downloads_dir / filename
+                elif platform == 'macos':
+                    filename = 'AI-IDS-Desktop-v1.0.0.zip'  # Universal package
+                    file_path = downloads_dir / filename
+                else:
+                    return jsonify({'error': 'Invalid platform'}), 400
+                
+                # Check if file exists
+                if not file_path.exists():
+                    logger.error(f"Download file not found: {file_path}")
+                    return jsonify({'error': 'Download file not available'}), 404
                 
                 # Log download
                 self.log_download(request.remote_addr, request.user_agent.string, 
@@ -104,9 +121,9 @@ class DownloadPortal:
                 
                 # Serve file
                 return send_file(
-                    package_path,
+                    file_path,
                     as_attachment=True,
-                    download_name=f'ai-ids-{platform}-{datetime.now().strftime("%Y%m%d")}.zip'
+                    download_name=filename
                 )
                 
             except Exception as e:
@@ -125,6 +142,27 @@ class DownloadPortal:
         def documentation():
             """Documentation page"""
             return render_template('documentation.html')
+        
+        @app.route('/getting-started')
+        def getting_started():
+            """Getting started guide"""
+            # Read the getting started markdown file and convert to HTML
+            try:
+                getting_started_path = Path(__file__).parent.parent / 'GETTING_STARTED.md'
+                with open(getting_started_path, 'r') as f:
+                    content = f.read()
+                # Simple markdown to HTML conversion for display
+                # Replace headers and basic formatting
+                html_content = content.replace('# ', '<h1>').replace('\n', '</h1>\n', 1)
+                html_content = html_content.replace('## ', '<h2>').replace('\n', '</h2>\n')
+                html_content = html_content.replace('### ', '<h3>').replace('\n', '</h3>\n')
+                html_content = html_content.replace('**', '<strong>', 1).replace('**', '</strong>', 1)
+                html_content = html_content.replace('`', '<code>', 1).replace('`', '</code>', 1)
+                html_content = html_content.replace('\n\n', '</p><p>')
+                html_content = '<p>' + html_content + '</p>'
+                return render_template('getting_started.html', content=html_content)
+            except Exception as e:
+                return f"<h1>Getting Started Guide</h1><p>Error loading guide: {e}</p>"
         
         @app.route('/support')
         def support():
@@ -187,6 +225,157 @@ class DownloadPortal:
                     flash('Invalid password')
             
             return render_template('admin_login.html')
+        
+        @app.route('/download/<package_name>')
+        def download_direct(package_name):
+            """Direct download for specific packages"""
+            try:
+                downloads_dir = Path(__file__).parent / 'static' / 'downloads'
+                
+                # Security check - only allow specific packages
+                allowed_packages = [
+                    'AI-IDS-Portable.zip',
+                    'AI-IDS-Desktop.zip',
+                    'AI-IDS-Web.zip'
+                ]
+                
+                if package_name not in allowed_packages:
+                    logger.warning(f"Unauthorized download attempt: {package_name}")
+                    return jsonify({'error': 'Package not found'}), 404
+                
+                file_path = downloads_dir / package_name
+                
+                # Check if file exists
+                if not file_path.exists():
+                    logger.error(f"Download file not found: {file_path}")
+                    return jsonify({'error': 'Download file not available'}), 404
+                
+                # Get user info from session/args
+                email = request.args.get('email', session.get('user_email', ''))
+                organization = request.args.get('organization', session.get('user_org', ''))
+                
+                # Determine package type for logging
+                if 'Portable' in package_name:
+                    package_type = 'portable'
+                elif 'Desktop' in package_name:
+                    package_type = 'desktop'
+                elif 'Web' in package_name:
+                    package_type = 'web'
+                else:
+                    package_type = 'unknown'
+                
+                # Log download
+                self.log_download(request.remote_addr, request.user_agent.string, 
+                                package_type, email, organization)
+                
+                # Serve file
+                return send_file(
+                    file_path,
+                    as_attachment=True,
+                    download_name=package_name
+                )
+                
+            except Exception as e:
+                logger.error(f"Direct download error: {e}")
+                return jsonify({'error': 'Download failed'}), 500
+        
+        @app.route('/download/desktop')
+        def download_desktop():
+            """Download desktop application package"""
+            return redirect('/download/AI-IDS-Desktop.zip')
+        
+        @app.route('/download/web')
+        def download_web():
+            """Download web application package"""
+            return redirect('/download/AI-IDS-Web.zip')
+        
+        @app.route('/download/portable-app')
+        def download_portable_app():
+            """Download the portable HTML app"""
+            try:
+                downloads_dir = Path(app.static_folder) / 'downloads'
+                app_file = downloads_dir / 'AI-IDS-Portable-Desktop-App.html'
+                
+                if not app_file.exists():
+                    logger.error(f"Portable app file not found: {app_file}")
+                    return "Portable app not available", 404
+                
+                # Log download
+                self.log_download(request.remote_addr, request.user_agent.string, 
+                                'portable', None, None)
+                
+                return send_file(
+                    app_file,
+                    as_attachment=True,
+                    download_name='AI-IDS-Portable-Desktop-App.html'
+                )
+            except Exception as e:
+                logger.error(f"Portable app download error: {e}")
+                return "Download failed", 500
+        
+        @app.route('/download/launcher')
+        def download_launcher():
+            """Download the Windows launcher for the portable app"""
+            try:
+                downloads_dir = Path(app.static_folder) / 'downloads'
+                launcher_file = downloads_dir / 'Launch-AI-IDS.bat'
+                
+                if not launcher_file.exists():
+                    logger.error(f"Launcher file not found: {launcher_file}")
+                    return "Launcher not available", 404
+                
+                # Log download
+                self.log_download(request.remote_addr, request.user_agent.string, 
+                                'launcher', None, None)
+                
+                return send_file(
+                    launcher_file,
+                    as_attachment=True,
+                    download_name='Launch-AI-IDS.bat'
+                )
+            except Exception as e:
+                logger.error(f"Launcher download error: {e}")
+                return "Download failed", 500
+        
+        @app.route('/api/download-stats')
+        def download_stats():
+            """Get download statistics"""
+            try:
+                conn = sqlite3.connect(DATABASE_FILE)
+                cursor = conn.cursor()
+                
+                # Get total downloads
+                cursor.execute('SELECT COUNT(*) FROM downloads')
+                total_downloads = cursor.fetchone()[0]
+                
+                # Get downloads by platform
+                cursor.execute('''
+                    SELECT platform, COUNT(*) as count 
+                    FROM downloads 
+                    GROUP BY platform 
+                    ORDER BY count DESC
+                ''')
+                by_platform = dict(cursor.fetchall())
+                
+                # Get recent downloads (last 30 days)
+                thirty_days_ago = datetime.now() - timedelta(days=30)
+                cursor.execute('''
+                    SELECT COUNT(*) FROM downloads 
+                    WHERE download_time > ?
+                ''', (thirty_days_ago.isoformat(),))
+                recent_downloads = cursor.fetchone()[0]
+                
+                conn.close()
+                
+                return jsonify({
+                    'total_downloads': total_downloads,
+                    'by_platform': by_platform,
+                    'recent_downloads': recent_downloads
+                })
+                
+            except Exception as e:
+                logger.error(f"Stats error: {e}")
+                return jsonify({'error': 'Could not fetch stats'}), 500
     
     def create_download_package(self, platform):
         """Create platform-specific download package"""
