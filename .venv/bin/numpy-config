@@ -1,4 +1,4 @@
-#!/workspaces/AI-Intrusion-Detection-System/.venv/bin/python3
+#!/workspaces/AI-Intrusion-Detection-System/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
