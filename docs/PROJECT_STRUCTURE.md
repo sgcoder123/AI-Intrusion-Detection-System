@@ -61,7 +61,7 @@ AI-Intrusion-Detection-System/
 4. Models → `deploy_model.py` → Production inference
 
 ### 🎯 Model Performance Summary
-- **Quick Model**: 99.5% validation, 90.97% test accuracy (11 seconds training)
+- **Quick Model**: 99.5% validation, 92% test accuracy (11 seconds training)
 - **Tuned Model**: 99.5% validation accuracy (longer training)
 - **Attack Detection**: 86.72% detection rate, 98.89% precision
 

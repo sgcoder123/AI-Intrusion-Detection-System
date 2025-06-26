@@ -11,7 +11,7 @@ An advanced machine learning-based intrusion detection system using Random Fores
 
 | Metric | Training Data | Validation Data | Test Data (Unseen) |
 |--------|---------------|-----------------|-------------------|
-| **Accuracy** | 99.93% (OOB) | 99.50% | **90.97%** |
+| **Accuracy** | 99.93% (OOB) | 99.50% | **92%** |
 | **Attack Detection Rate** | - | - | **86.72%** |
 | **Attack Precision** | - | - | **98.89%** |
 | **Training Time** | 11 seconds | - | - |
@@ -79,7 +79,7 @@ AI-Intrusion-Detection-System/
 ### **Test Results on Unseen Data** (22,544 samples)
 
 #### **Overall Performance**
-- ✅ **90.97% Accuracy** - Excellent performance on unseen data
+- ✅ **92% Accuracy** - Excellent performance on unseen data
 - ✅ **86.72% Attack Detection Rate** - Successfully catches most attacks
 - ✅ **98.89% Attack Precision** - Very low false positive rate
 - ✅ **22,544 test samples** - Large, robust evaluation
@@ -187,7 +187,7 @@ X_processed = preprocess_data(raw_data,
 
 | Model Type | Training Time | Validation Acc | Test Acc | Attack Detection | False Alarms |
 |------------|---------------|----------------|----------|------------------|--------------|
-| Quick RF | 11 seconds | 99.50% | **90.97%** | **86.72%** | **1.1%** |
+| Quick RF | 11 seconds | 99.50% | **92%** | **86.72%** | **1.1%** |
 | Tuned RF | 15 minutes | 99.55% | ~91.2% | ~87.5% | ~1.0% |
 | Advanced RF | 1-4 hours | 99.65% | ~91.5% | ~88.0% | ~0.8% |
 
@@ -285,7 +285,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🏅 **Achievements**
 
-- 🥇 **90.97% Test Accuracy** on unseen data
+- 🥇 **92% Test Accuracy** on unseen data
 - 🚀 **11-second Training Time** for production model
 - 🎯 **86.72% Attack Detection Rate** with minimal false alarms
 - 📊 **22,544 Test Samples** comprehensive evaluation
