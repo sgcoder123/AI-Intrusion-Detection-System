@@ -4,7 +4,7 @@
 [![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.3.2-orange)](https://scikit-learn.org)
 [![Git LFS](https://img.shields.io/badge/Git%20LFS-Enabled-green)](https://git-lfs.github.com)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
-[![Accuracy](https://img.shields.io/badge/Test%20Accuracy-90.98%25-brightgreen)](README.md)
+[![Accuracy](https://img.shields.io/badge/Test%20Accuracy-91.17%25-brightgreen)](README.md)
 [![Detection Rate](https://img.shields.io/badge/Attack%20Detection-85.96%25-green)](README.md)
 
 An advanced machine learning-based intrusion detection system using Random Forest classifiers with optimized data preprocessing, class balancing, and ultra-fast training capabilities. Built for production environments with comprehensive attack detection across 23+ different attack types.
@@ -13,7 +13,7 @@ An advanced machine learning-based intrusion detection system using Random Fores
 
 | Metric | Training Data | Validation Data | **Test Data (Unseen)** |
 |--------|---------------|-----------------|-------------------|
-| **Accuracy** | 99.93% (OOB) | 99.47% | **🎯 90.98%** |
+| **Accuracy** | 99.93% (OOB) | 99.47% | **🎯 91.17%** |
 | **Attack Detection Rate** | - | - | **🔍 85.96%** |
 | **Attack Precision** | - | - | **✅ 98.84%** |
 | **Training Time** | ⚡ 11 seconds | - | - |
