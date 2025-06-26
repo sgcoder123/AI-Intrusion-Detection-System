@@ -1,4 +1,5 @@
 # 🛡️ AI Intrusion Detection System - Web Edition
+*Fun Project Made With Vibe Coding*
 
 [![Python](https://img.shields.io/badge/Python-3.6%2B-blue)](https://python.org)
 [![Portable](https://img.shields.io/badge/Portable-No%20Installation-green)](README.md)
