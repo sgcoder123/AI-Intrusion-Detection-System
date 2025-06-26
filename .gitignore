@@ -40,15 +40,12 @@ venv.bak/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Data files (large datasets)
+# Data files (compressed only)
 *.csv.gz
 *.tar.gz
 *.zip
 
-# Model files (optional - comment out if you want to track models)
-# *.joblib
-# *.pkl
-# *.pickle
+# Note: Large CSV and model files are tracked with Git LFS
 
 # OS specific
 .DS_Store
