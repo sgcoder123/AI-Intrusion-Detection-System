@@ -1,231 +1,119 @@
-# AI Intrusion Detection System - Getting Started Guide
+# 🚀 Getting Started with AI-IDS Web Edition
 
-## 🎯 What You Downloaded
-You've downloaded the AI-IDS (AI Intrusion Detection System) - a user-friendly desktop application for network security monitoring and threat detection demonstration.
+Welcome to the **AI Intrusion Detection System - Web Edition**! This guide will get you up and running in under 2 minutes.
 
-## 📦 Available Download Options
+## ⚡ Quick Start (30 seconds)
 
-### 1. **AI-IDS Portable** (Recommended for beginners)
-- **File**: `AI-IDS-Portable.zip`
-- **Best for**: Users who want the easiest setup
-- **Works**: With or without Python installed
+### Step 1: Download
+Download the `ai_ids_web_portable.py` file to your computer.
 
-### 2. **AI-IDS Desktop Package**
-- **Files**: `AI-IDS-Desktop-v1.0.0.zip` or `AI-IDS-Desktop-v1.0.0.tar.gz`
-- **Best for**: Users who have Python installed
-- **Works**: Requires Python 3.6+
+### Step 2: Run
+Double-click one of these options:
 
----
+**Windows Users:**
+```
+Start-AI-IDS-Web.bat
+```
 
-## 🚀 Step-by-Step Installation Guide
+**Linux/Mac Users:**
+```
+./Start-AI-IDS-Web.sh
+```
 
-### Option A: Portable Version (Easiest - No Python Required)
+**Or run directly:**
+```bash
+python ai_ids_web_portable.py
+```
 
-#### Windows Users:
-1. **Download** `AI-IDS-Portable.zip`
-2. **Extract** the ZIP file to any folder (e.g., Desktop, Documents)
-3. **Open** the extracted `AI-IDS-Portable` folder
-4. **Double-click** `launch_ai_ids.bat`
-5. **Wait** for the application to start (may take 10-30 seconds)
+### Step 3: Use
+Your browser will automatically open to `http://localhost:8080` showing the AI-IDS dashboard!
 
-#### Mac/Linux Users:
-1. **Download** `AI-IDS-Portable.zip`
-2. **Extract** the ZIP file to any folder
-3. **Open Terminal** and navigate to the extracted folder:
-   ```bash
-   cd ~/Downloads/AI-IDS-Portable
-   ```
-4. **Make the launcher executable**:
-   ```bash
-   chmod +x launch_ai_ids.sh
-   ```
-5. **Run the launcher**:
-   ```bash
-   ./launch_ai_ids.sh
-   ```
+## 🎯 What You'll See
 
-### Option B: Desktop Package (Requires Python)
+### Main Dashboard
+- **🛡️ Protection Status**: Red (OFF) or Green (ON)
+- **📊 Live Statistics**: Packets analyzed, threats detected, uptime
+- **🎛️ Control Panel**: Start/Stop buttons
+- **⚙️ Settings**: Sensitivity slider (1-100%)
+- **📋 Activity Log**: Real-time security alerts
 
-#### Prerequisites:
-- Python 3.6 or higher installed
-- pip (Python package installer)
+### Using the System
 
-#### Installation Steps:
-1. **Download** `AI-IDS-Desktop-v1.0.0.zip`
-2. **Extract** to your preferred location
-3. **Open Terminal/Command Prompt** in the extracted folder
-4. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-5. **Run the application**:
-   ```bash
-   python standalone_ids_app.py
-   ```
+1. **Click "Start Protection"** - Begins monitoring simulation
+2. **Watch Live Stats** - See packet counts increase in real-time  
+3. **Adjust Sensitivity** - Lower = more alerts, Higher = fewer alerts
+4. **Monitor Alerts** - Security threats appear in the activity log
+5. **Click "Stop Protection"** - Stops monitoring
 
----
+## 🔧 Configuration
 
-## 🖥️ Using the Application
+### Sensitivity Settings
+- **1-30% (Low)**: High alerting, more false positives
+- **31-70% (Medium)**: Balanced detection (recommended)
+- **71-100% (High)**: Conservative, fewer false positives
 
-### First Launch
-1. The AI-IDS window will open with a clean interface
-2. You'll see the main dashboard with:
-   - **Protection Status**: Currently stopped (red)
-   - **Statistics**: All zeros initially
-   - **Configuration**: Sensitivity slider and settings
-   - **Recent Alerts**: Empty log area
+### What the Alerts Mean
+- **🚨 Port Scan**: Someone is scanning your network ports
+- **⚡ DoS Attack**: Denial of Service attack detected
+- **🔐 Brute Force**: Password cracking attempt
+- **🦠 Malware Communication**: Suspicious network traffic
+- **📡 IP Sweep**: Network reconnaissance activity
 
-### Starting Protection
-1. **Click** the "🛡️ Start Protection" button
-2. **Watch** the status change to "🟢 Protection Enabled"
-3. **Observe** live statistics updating:
-   - Packets Analyzed (simulated network traffic)
-   - Threats Detected (based on AI analysis)
-   - Uptime counter
+## 🛠️ Troubleshooting
 
-### Adjusting Settings
-- **Sensitivity Slider**: Lower values = more threats detected
-- **Auto-start**: Check to start protection automatically
-- **Recent Alerts**: View detected threats in real-time
+### Port Already in Use
+If you see "Port 8080 already in use":
+1. Close any other web applications
+2. Or edit `ai_ids_web_portable.py` and change `port = 8080` to another number
 
-### Stopping Protection
-- **Click** "⏹️ Stop Protection" to pause monitoring
-- Statistics will freeze until you restart
+### Browser Won't Open
+If the browser doesn't open automatically:
+1. Manually open your browser
+2. Go to: `http://localhost:8080`
 
----
+### Python Not Found
+If you get "Python not found":
+1. Install Python 3.6+ from [python.org](https://python.org)
+2. Make sure Python is added to your PATH
 
-## 🔧 Troubleshooting
+## 🎓 Educational Tips
 
-### Application Won't Start
+### Understanding the Simulation
+This is a **simulation** of network intrusion detection:
+- Packet counts are generated realistically (50-200/second)
+- Threat detection uses probability based on sensitivity
+- All alerts are simulated but represent real attack types
 
-#### Windows:
-- **Right-click** `launch_ai_ids.bat` → "Run as administrator"
-- **Check** if Windows Defender is blocking the file
-- **Ensure** you extracted the full ZIP file contents
+### Learning Opportunities
+- **Cybersecurity Basics**: Learn how IDS systems work
+- **Threat Recognition**: Understand different attack patterns
+- **Network Security**: See how monitoring protects systems
+- **Web Development**: Study the code to learn web app creation
 
-#### Mac:
-- **System Preferences** → Security & Privacy → Allow the application
-- **Terminal**: Try running with `python3` instead of `python`
-- **Permissions**: Run `chmod +x launch_ai_ids.sh`
+## 🔒 Privacy & Security
 
-#### Linux:
-- **Install tkinter**: `sudo apt-get install python3-tk`
-- **Check Python**: `python3 --version`
-- **Run directly**: `python3 ai_ids_app.py`
+- **100% Local**: Runs only on your computer
+- **No Internet Required**: Works completely offline
+- **No Data Collection**: Nothing is sent anywhere
+- **Safe Simulation**: No real network monitoring
 
-### Web Mode (Fallback)
-If the desktop app fails, the system automatically opens a web version:
-1. Your default browser will open
-2. Navigate to `http://localhost:8080`
-3. Use the web interface (same features)
+## 📚 Next Steps
 
-### Common Issues:
+Once you're comfortable with the basic interface:
 
-**ERROR: "tkinter not found"**
-- Install Python with tkinter support
-- On Ubuntu/Debian: `sudo apt-get install python3-tk`
-- On CentOS/RHEL: `sudo yum install tkinter`
+1. **Experiment with Sensitivity**: See how it affects alert frequency
+2. **Study the Code**: Open `ai_ids_web_portable.py` to learn
+3. **Customize the Interface**: Modify colors, text, or features
+4. **Share with Others**: It's completely portable!
 
-**ERROR: "Module not found"**
-- Run: `pip install -r requirements.txt`
-- Or try: `pip3 install -r requirements.txt`
+## 🆘 Need Help?
 
-**Application freezes**
-- Close and restart the application
-- Check system resources (RAM/CPU)
-- Try reducing sensitivity setting
+- **GitHub Issues**: Report problems or ask questions
+- **Documentation**: Read the full README.md
+- **Code Comments**: The Python file is well-documented
 
 ---
 
-## 🎮 Demo Mode vs Live Mode
+**🛡️ Enjoy exploring cybersecurity with AI-IDS! 🛡️**
 
-### Demo Mode (Default)
-- **Simulated** network traffic and threats
-- **Safe** for testing and learning
-- **No actual** network monitoring
-- **Educational** purposes
-
-### Live Mode (Advanced)
-- Requires additional setup
-- Real network packet analysis
-- Administrative privileges needed
-- For cybersecurity professionals
-
----
-
-## 📱 Features Overview
-
-### 🛡️ Protection Dashboard
-- Real-time status indicator
-- One-click start/stop protection
-- Live threat counter
-- Network packet statistics
-
-### ⚙️ Configuration
-- Adjustable sensitivity (1-100)
-- Auto-start with system option
-- Sound alerts toggle
-- Persistent settings storage
-
-### 📊 Monitoring
-- Live threat detection
-- Alert categorization
-- Activity logging
-- Uptime tracking
-
-### 🔍 Threat Types Detected
-- Port scans
-- DDoS attempts
-- Suspicious connections
-- Malware communications
-- IP sweeps
-- Brute force attacks
-
----
-
-## 🆘 Getting Help
-
-### Built-in Help
-- **Menu**: Help → Documentation
-- **Tooltips**: Hover over buttons for quick help
-- **Log**: Check "Recent Alerts" for status messages
-
-### Online Resources
-- **GitHub**: [Project Repository]
-- **Documentation**: Check included README files
-- **Issues**: Report bugs through the web interface
-
-### Contact Support
-If you encounter persistent issues:
-1. **Check** the troubleshooting section above
-2. **Try** the web mode fallback
-3. **Note** your operating system and Python version
-4. **Describe** the specific error message
-
----
-
-## 🎯 Quick Start Checklist
-
-- [ ] Downloaded and extracted AI-IDS package
-- [ ] Ran the launcher script for your OS
-- [ ] Application opened successfully
-- [ ] Clicked "Start Protection"
-- [ ] Observed live statistics updating
-- [ ] Adjusted sensitivity if desired
-- [ ] Ready to monitor for threats!
-
----
-
-## 🔒 Privacy & Security Notes
-
-- This is a **demonstration application** for educational purposes
-- **No real** network data is transmitted externally
-- **Settings** are stored locally on your computer
-- **No personal** information is collected
-- Safe to use on any network
-
----
-
-**Congratulations! 🎉 You're now ready to use the AI Intrusion Detection System!**
-
-For advanced features and customization, refer to the technical documentation included with your download.
+*Remember: This is for education and demonstration only!*

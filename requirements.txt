@@ -1,41 +1,13 @@
-# Core machine learning libraries
-scikit-learn==1.3.2
-pandas>=2.0.0
-numpy>=1.24.0
+# AI Intrusion Detection System - Web Version Requirements
+# No external dependencies required - uses only Python standard library
+# 
+# The web version is designed to be completely portable and self-contained
+# It only requires Python 3.6+ with standard library modules:
+# - http.server (for web server)
+# - threading (for background monitoring simulation)
+# - json (for data handling)
+# - webbrowser (for auto-opening browser)
+# - datetime, time, random, os, sys, pathlib, urllib (standard modules)
 
-# Data visualization
-matplotlib>=3.7.0
-seaborn>=0.12.0
-
-# Data preprocessing and balancing
-imbalanced-learn==0.11.0
-
-# Model persistence
-joblib>=1.3.0
-
-# Jupyter notebook support (optional)
-jupyter>=1.0.0
-jupyterlab>=4.0.0
-
-# Network packet analysis (if needed for live detection)
-scapy>=2.5.0
-
-# Progress bars and utilities
-tqdm>=4.65.0
-
-# Development dependencies
-pytest>=7.4.0
-black>=23.0.0
-flake8>=6.0.0
-
-# Real-time monitoring dependencies
-psutil>=5.9.0
-watchdog>=3.0.0
-pyyaml>=6.0.0
-colorlog>=6.7.0
-click>=8.1.0
-python-daemon>=3.0.0
-
-# Web dashboard
-flask>=2.3.0
-flask-cors>=4.0.0
+# No pip install required!
+# Just run: python ai_ids_web_portable.py
