@@ -45,6 +45,10 @@ venv.bak/
 *.tar.gz
 *.zip
 
+# Test results and temporary outputs
+data/test_results_*.txt
+data/test_predictions*.csv
+
 # Note: Large CSV and model files are tracked with Git LFS
 
 # OS specific

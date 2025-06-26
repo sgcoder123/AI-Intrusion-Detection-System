@@ -165,12 +165,10 @@ The system automatically:
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🏆 Performance Highlights
 
+- ✅ Thorough grid search with HyperParameterGridSearchCV
 - ✅ Advanced class balancing with SMOTE + Tomek Links
 - ✅ Multiple ensemble methods comparison
 - ✅ Automated hyperparameter optimization
